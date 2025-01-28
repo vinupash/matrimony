@@ -3,6 +3,8 @@ import { useState, useEffect, createContext } from "react";
 const NavigationContext = createContext();
 
 export const NavigationProvider = ({ children }) => {
+  // const [isProfileUploaded, setIsProfileUploaded] = useState(true);
+  const [isProfileUploaded] = useState(true);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -17,7 +19,9 @@ export const NavigationProvider = ({ children }) => {
     setCurrentPath(to);
   };
   return (
-    <NavigationContext.Provider value={{ currentPath, navigate }}>
+    <NavigationContext.Provider
+      value={{ currentPath, navigate, isProfileUploaded }}
+    >
       {children}
     </NavigationContext.Provider>
   );

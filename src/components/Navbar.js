@@ -3,12 +3,18 @@ import { assets } from "../constant";
 import CustomLink from "./CustomLink";
 import { useDropdownmenu, useGreeting } from "../hooks";
 import UserProfile from "./UserProfile";
+import ProfileNotification from "./ProfileNotification";
 
 const Navbar = (props) => {
   const { isDropdownVisible, toggleDropdown } = useDropdownmenu();
   const greeting = useGreeting();
 
-  console.log(props);
+  // console.log(props);
+  const profileNotificationData = [
+    { id: 1, name: "Pradnya Sutar", profileImg: assets.Profile },
+    { id: 2, name: "Pradnya Sutar", profileImg: assets.Profile },
+    { id: 3, name: "Pradnya Sutar", profileImg: assets.Profile },
+  ];
 
   return (
     <div className="navbar-section">
@@ -39,6 +45,20 @@ const Navbar = (props) => {
                 </div>
                 <div className="notification-text">Notification</div>
                 <div className="notification-count">1</div>
+
+                <div className="dropdown-notification-content">
+                  <div className="dropdown-notification-content-wrapper">
+                    {profileNotificationData.map((profileVisiter) => {
+                      return (
+                        <ProfileNotification
+                          key={profileVisiter.id}
+                          Profile={profileVisiter.profileImg}
+                          profileVisterName={profileVisiter.name}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
               </li>
             </ul>
             <div className="dropdown-menu-section">

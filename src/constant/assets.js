@@ -10,6 +10,7 @@ import UsersBlackIcon from "../assets/users-black.svg";
 import BellIcon from "../assets/bell.svg";
 import BellBlackIcon from "../assets/bell-black.svg";
 import Profile from "../assets/profile.jpg";
+import ProfileTwo from "../assets/profile-4.jpg";
 import Bookmark from "../assets/bookmark.svg";
 import Connect from "../assets/connect.svg";
 import ConnectBlack from "../assets/connect-black.svg";
@@ -21,6 +22,15 @@ import LogoutIcon from "../assets/logout.svg";
 import ChevronDownIcon from "../assets/chevron-down-icon.svg";
 import CloseIcon from "../assets/close.svg";
 import MatchingIcon from "../assets/matching.svg";
+import UploadProfile from "../assets/upload-profile.json";
+import Nomore from "../assets/no-more.json";
+import BagIcon from "../assets/bag.svg";
+import SalaryIcon from "../assets/salary.svg";
+import EducationIcon from "../assets/education.svg";
+import WeddingIcon from "../assets/wedding-rings.svg";
+import ViewProfileIcon from "../assets/view-profile.svg";
+import StarIcon from "../assets/star.svg";
+import MatchIcon from "../assets/match.svg";
 
 const assets = {
   EyeClosedIcon,
@@ -33,6 +43,7 @@ const assets = {
   UsersBlackIcon,
   BellIcon,
   Profile,
+  ProfileTwo,
   Bookmark,
   Connect,
   Telephone,
@@ -46,5 +57,14 @@ const assets = {
   CloseIcon,
   MatchingIcon,
   ConnectBlack,
+  UploadProfile,
+  BagIcon,
+  SalaryIcon,
+  WeddingIcon,
+  EducationIcon,
+  ViewProfileIcon,
+  StarIcon,
+  MatchIcon,
+  Nomore,
 };
 export default assets;

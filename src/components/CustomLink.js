@@ -6,7 +6,7 @@ const CustomLink = ({ children, to, className, activeClass }) => {
   const { navigate, currentPath } = useNavigation();
   const classFunction = classNames(
     "",
-    classNames,
+    className,
     currentPath === to && activeClass
   );
   const handelClick = (event) => {
