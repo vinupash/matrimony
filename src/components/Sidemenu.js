@@ -9,10 +9,9 @@ const Sidemenu = (props) => {
       <div className="user-details-wrapper">
         <div className="avatar">
           <UserProfile
-            profileImage={assets.Profile}
+            profileImage={props.userProfile.profileImg}
             className="user-profile-img"
           />
-          {/* <img src={assets.Profile} alt="" /> */}
         </div>
         <div className="greeting">{props.greeting}</div>
         <div className="user-name">Hi, {props.userProfile.name}</div>

@@ -505,7 +505,8 @@ button {
 
 .sidemenu-content {
   background-color: #fafafa;
-  box-shadow: 0 0 6px #00000029;
+  // box-shadow: 0 0 6px #00000029;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 10px;
   border-radius: 10px;
 }
@@ -741,7 +742,7 @@ button {
     font-size: 14px;
     line-height: 16px;
     color: $van-cleef-950;
-    font-weight: 400;
+    font-weight: 300;
 
     span {
       color: $van-cleef-600;
@@ -751,351 +752,849 @@ button {
 }
 
 .main-wrapper {
-  display: flex;
   height: 100vh;
-  // margin-top: 70px;
 
-  .menu-section {
+  .container {
+    height: 100vh;
+
+    .content-wrapper {
+      margin-top: 70px;
+      padding-top: 10px;
+    }
+  }
+  &.right-panel {
+    .main-section {
+      margin: 0px 250px;
+      overflow-y: auto;
+      height: calc(100vh - 80px);
+      box-sizing: border-box;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding-right: 20px;
+
+      @media (max-width: 1023px) {
+        margin: 0px 0px 0px 250px;
+        padding-right: 1px;
+      }
+
+      @media (max-width: 767px) {
+        margin: 0px 0px;
+        padding: 0px 1px 0px;
+      }
+    }
+    .right-section {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      overflow-y: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      height: calc(100vh - 70px);
+      padding: 10px 1px 0px;
+
+      @media (max-width: 1023px) {
+        display: none;
+      }
+
+      .right-section-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .right-section-content {
+          background-color: #fafafa;
+          // box-shadow: 0 0 6px #00000029;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          padding: 10px;
+          border-radius: 10px;
+          overflow-y: auto;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+
+          .right-section-content-title {
+            font-size: 14px;
+            line-height: 16px;
+            color: $van-cleef-950;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+
+            &::after {
+              content: "";
+              width: 40px;
+              height: 1px;
+              display: inline-block;
+              background: $van-cleef-600;
+              margin: 4px 5px 4px;
+            }
+          }
+
+          .similar-profiles-section {
+            cursor: pointer;
+            text-decoration: none;
+            .similar-profile-section {
+              box-shadow: $box-shadow;
+              width: 60px;
+              height: 60px;
+              border-radius: 5px;
+              overflow: hidden;
+              .similar-profile-img {
+                width: auto;
+                height: 60px;
+              }
+            }
+            .similar-profile-text {
+              font-size: 14px;
+              line-height: 16px;
+              // color: $van-cleef-950;
+              font-weight: 300;
+              display: flex;
+              flex-direction: column;
+              gap: 4px;
+
+              span.profile-name {
+                color: $van-cleef-950;
+                font-weight: 500;
+                display: block;
+              }
+              span.profile-age {
+                font-size: 14px;
+                line-height: 16px;
+                color: $van-cleef-950;
+                font-weight: 400;
+                display: block;
+              }
+              span.profile-location {
+                font-size: 12px;
+                line-height: 14px;
+                color: $van-cleef-950;
+                font-weight: 300;
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .left-section {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 250px;
-    padding: 2px 2px 2px;
-    position: fixed;
-    // top: 80px;
-    bottom: 0;
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    height: calc(100vh - 80px);
-    margin-top: 80px;
+    height: calc(100vh - 70px);
+    padding: 10px 1px 0px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       display: none;
     }
   }
 
   .main-section {
     margin-left: 250px;
-    flex: 1;
-    padding: 2px 1px 20px 20px;
-
     overflow-y: auto;
     height: calc(100vh - 80px);
-    margin-top: 80px;
     box-sizing: border-box;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    padding: 0px 1px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-    @media (max-width: 768px) {
-      margin-left: 0;
-      padding: 1px 0px 0px;
+    @media (max-width: 1023px) {
+      margin: 0px 0px 0px 250px;
+    }
+
+    @media (max-width: 767px) {
+      margin: 0px 0px;
+      padding: 0px 0px 20px 0px;
+    }
+  }
+}
+
+.daily-limit-alert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  background-color: $van-cleef-100;
+  gap: 15px;
+  // box-shadow: 0 0 6px #00000029;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+
+  .user-name {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 26px;
+    font-family: $Lato;
+    color: $van-cleef-600;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: $Lato;
+    color: $van-cleef-950;
+    max-width: 500px;
+  }
+
+  .subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    font-family: $Lato;
+    color: $van-cleef-950;
+    max-width: 450px;
+  }
+
+  .daily-limit-alert-img {
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+
+    @media (max-width: 767px) {
+      max-width: 200px;
     }
   }
 }
 
 .profile-listing-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 0px 2px 0;
+  .profile-list-container {
+    // display: flex;
+    // flex-wrap: wrap;
+    // gap: 20px;
+    // justify-content: center;
 
-  .daily-limit-alert {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 20px;
-    background-color: $van-cleef-100;
-    gap: 15px;
-    box-shadow: 0 0 6px #00000029;
-    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+    grid-auto-rows: minmax(180px, auto);
 
-    .user-name {
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 26px;
-      font-family: $Lato;
-      color: $van-cleef-600;
+    @media (max-width: 1399px) {
+      grid-template-columns: repeat(1, 1fr);
     }
 
-    .title {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 24px;
-      font-family: $Lato;
-      color: $van-cleef-950;
-      max-width: 450px;
-    }
+    .profile-list-item {
+      border: 1px solid #fafafa;
+      flex: 1 1 calc(50% - 20px);
+      box-sizing: border-box;
+      border-radius: 10px;
+      background-color: #fafafa;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: 0.3s;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      position: relative;
 
-    .subtitle {
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 18px;
-      font-family: $Lato;
-      color: $van-cleef-950;
-      max-width: 450px;
-    }
+      @media (max-width: 1399px) {
+        // flex: 1 1 100%;
+        // margin-bottom: 20px;
+        &:last-child {
+          margin-bottom: 0px;
+        }
+      }
 
-    .daily-limit-alert-img {
-      max-width: 200px;
-      height: auto;
-      aspect-ratio: 1 / 1;
+      @media (max-width: 767px) {
+        display: block;
+        width: 100%;
+        height: calc(100vh - 90px);
+      }
 
-      @media (max-width: 991px) {
-        max-width: 100px;
+      .profile-image-wrapper {
+        aspect-ratio: 3/4;
+        // background-color: $van-cleef-50;
+        // width: 15.5vh;
+        // width: 140px;
+        width: 160px;
+        overflow: hidden;
+        flex-shrink: 0;
+        position: relative;
+
+        .profile-image {
+          object-position: top;
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+
+        @media (max-width: 767px) {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .profile-details {
+        display: block;
+        padding: 10px;
+        @media (max-width: 767px) {
+          padding: 30px 20px 30px;
+        }
+
+        @media (max-width: 767px) {
+          position: absolute;
+          bottom: 0%;
+          left: 0%;
+          width: 100%;
+
+          background-image: linear-gradient(
+            359.85deg,
+            rgba(0, 0, 0, 0.8) 52.56%,
+            rgba(0, 0, 0, 0.8) 59.83%,
+            transparent 101.81%
+          );
+        }
+
+        .profile-details-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .profile-details-link {
+            text-decoration: none;
+
+            .profile-personal-details {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              @media (max-width: 767px) {
+                gap: 10px;
+              }
+
+              .profile-dob {
+                font-size: 12px;
+                line-height: 14px;
+                font-weight: 400;
+                color: $van-cleef-950;
+
+                @media (max-width: 767px) {
+                  font-size: 14px;
+                  line-height: 16px;
+                  color: $van-cleef-50;
+                }
+              }
+              .profile-name {
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 24px;
+                font-family: $Lato;
+                color: $van-cleef-950;
+                white-space: normal;
+                -webkit-line-clamp: 1;
+                min-height: 24px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow-y: hidden;
+
+                @media (max-width: 767px) {
+                  font-size: 22px;
+                  line-height: 26px;
+                  min-height: 26px;
+                  color: $van-cleef-50;
+                }
+              }
+              .profile-search-card {
+                display: flex;
+                flex-direction: row;
+
+                li {
+                  padding-left: 15px;
+                  position: relative;
+                  font-size: 14px;
+                  line-height: 16px;
+                  font-weight: 500;
+                  color: $van-cleef-950;
+                  white-space: normal;
+                  -webkit-line-clamp: 1;
+                  min-height: 16px;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  overflow-y: hidden;
+
+                  @media (max-width: 767px) {
+                    font-size: 16px;
+                    line-height: 18px;
+                    min-height: 18px;
+                    color: $van-cleef-50;
+                  }
+
+                  &::before {
+                    content: "";
+                    position: absolute;
+                    width: 5px;
+                    height: 5px;
+                    border-radius: 5px;
+                    background-color: $van-cleef-300;
+                    left: 5px;
+                    top: 6px;
+
+                    @media (max-width: 767px) {
+                      top: 7px;
+                    }
+                  }
+                }
+              }
+
+              .profile-occupation-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                flex-direction: row;
+                @media (max-width: 767px) {
+                  gap: 15px;
+                }
+                .icon-box {
+                  width: 18px;
+                  height: 18px;
+                  justify-content: center;
+                  align-items: center;
+                  display: flex;
+                  @media (max-width: 767px) {
+                    display: none;
+                  }
+                  img {
+                    width: 14px;
+                    height: auto;
+                  }
+                }
+                .occupation,
+                .marital-status,
+                .education-degree,
+                .income {
+                  font-size: 12px;
+                  line-height: 14px;
+                  font-weight: 500;
+                  color: $van-cleef-950;
+                  white-space: normal;
+                  -webkit-line-clamp: 1;
+                  min-height: 14px;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  overflow-y: hidden;
+
+                  @media (max-width: 767px) {
+                    font-size: 16px;
+                    line-height: 18px;
+                    min-height: 18px;
+                    color: $van-cleef-50;
+                  }
+                }
+              }
+            }
+          }
+
+          .profile-nav-wrapper {
+            ul {
+              display: flex;
+              flex-direction: row;
+              gap: 10px;
+
+              li {
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: $van-cleef-100;
+                transition: all 0.25s;
+
+                &:hover {
+                  background-color: $van-cleef-500;
+                  transform: translate(0, -2px);
+                }
+
+                img {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &:hover {
+        border: 1px solid $van-cleef-400;
+        cursor: pointer;
       }
     }
   }
 }
 
-.profile-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-
-  @media (max-width: 1399px) {
-    gap: 0px;
+.quick-match-popup {
+  .modal-dialog {
+    max-width: 650px;
   }
-
-  .profile-list-item {
-    border: 1px solid #fafafa;
-    flex: 1 1 calc(50% - 20px);
-    box-sizing: border-box;
-    border-radius: 10px;
-    background-color: #fafafa;
-    box-shadow: 0 0 6px #00000029;
-    transition: 0.3s;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    @media (max-width: 1399px) {
-      flex: 1 1 100%;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 767px) {
-      display: block;
-      width: 100%;
-      height: calc(100vh - 90px);
-    }
-
-    .profile-image-wrapper {
-      aspect-ratio: 3/4;
-      // background-color: $van-cleef-50;
-      width: 150px;
-      // width: 160px;
-      overflow: hidden;
-      flex-shrink: 0;
+  .modal-content {
+    .modal-body {
       position: relative;
-
-      .profile-image {
-        object-position: top;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-      }
-
-      @media (max-width: 767px) {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .profile-details {
-      display: block;
-      padding: 10px;
-      @media (max-width: 767px) {
-        padding: 30px 20px 30px;
-      }
-
-      @media (max-width: 767px) {
+      .close-icon {
         position: absolute;
-        bottom: 0%;
-        left: 0%;
-        width: 100%;
+        top: -10px;
+        right: -10px;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        background-color: $white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
-        background-image: linear-gradient(
-          359.85deg,
-          rgba(0, 0, 0, 0.8) 52.56%,
-          rgba(0, 0, 0, 0.8) 59.83%,
-          transparent 101.81%
-        );
+        img {
+          width: 20px;
+          height: 20px;
+        }
       }
 
-      .profile-details-wrapper {
+      .profile-match-wrapper-details {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
 
-        .profile-details-link {
-          text-decoration: none;
+        .profile-match-details {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
 
-          .profile-personal-details {
+          @media (max-width: 767px) {
+            flex-direction: column;
+          }
+
+          .profile-details {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
 
-            @media (max-width: 767px) {
-              gap: 10px;
-            }
-
-            .profile-dob {
+            .user-name {
               font-size: 12px;
               line-height: 14px;
-              font-weight: 400;
-              color: $van-cleef-950;
-
-              @media (max-width: 767px) {
-                font-size: 14px;
-                line-height: 16px;
-                color: $van-cleef-50;
-              }
-            }
-            .profile-name {
-              font-weight: 600;
-              font-size: 20px;
-              line-height: 24px;
-              font-family: $Lato;
+              font-weight: 500;
               color: $van-cleef-950;
               white-space: normal;
               -webkit-line-clamp: 1;
-              min-height: 24px;
+              min-height: 14px;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               overflow-y: hidden;
-
-              @media (max-width: 767px) {
-                font-size: 22px;
-                line-height: 26px;
-                min-height: 26px;
-                color: $van-cleef-50;
-              }
-            }
-            .profile-search-card {
-              display: flex;
-              flex-direction: row;
-
-              li {
-                padding-left: 15px;
-                position: relative;
-                font-size: 14px;
-                line-height: 16px;
-                font-weight: 500;
-                color: $van-cleef-950;
-                white-space: normal;
-                -webkit-line-clamp: 1;
-                min-height: 16px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow-y: hidden;
-
-                @media (max-width: 767px) {
-                  font-size: 16px;
-                  line-height: 18px;
-                  min-height: 18px;
-                  color: $van-cleef-50;
-                }
-
-                &::before {
-                  content: "";
-                  position: absolute;
-                  width: 5px;
-                  height: 5px;
-                  border-radius: 5px;
-                  background-color: $van-cleef-300;
-                  left: 5px;
-                  top: 6px;
-
-                  @media (max-width: 767px) {
-                    top: 7px;
-                  }
-                }
-              }
             }
 
-            .profile-occupation-wrapper {
-              display: flex;
-              align-items: center;
-              gap: 5px;
-              flex-direction: row;
-              @media (max-width: 767px) {
-                gap: 15px;
-              }
-              .icon-box {
-                width: 18px;
-                height: 18px;
-                justify-content: center;
-                align-items: center;
-                display: flex;
-                @media (max-width: 767px) {
-                  display: none;
-                }
-                img {
-                  width: 14px;
-                  height: auto;
-                }
-              }
-              .occupation,
-              .marital-status,
-              .education-degree,
-              .income {
-                font-size: 12px;
-                line-height: 14px;
-                font-weight: 500;
-                color: $van-cleef-950;
-                white-space: normal;
-                -webkit-line-clamp: 1;
-                min-height: 14px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                overflow-y: hidden;
+            .user-profile-img-wrapper {
+              aspect-ratio: 1/1;
+              width: 10vh;
+              overflow: hidden;
+              border-radius: 100%;
 
-                @media (max-width: 767px) {
-                  font-size: 16px;
-                  line-height: 18px;
-                  min-height: 18px;
-                  color: $van-cleef-50;
-                }
+              .user-profile-img {
+                object-position: top;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
               }
+            }
+          }
+
+          .horizontal-line {
+            background-color: $van-cleef-600;
+            height: 1px;
+            width: 50px;
+            margin-top: 30px;
+
+            @media (max-width: 767px) {
+              // display: none;
+              margin-top: 0px;
+              width: 1px;
+              height: 20px;
+            }
+          }
+
+          .profile-match-result-content {
+            padding: 10px;
+            background-color: $van-cleef-50;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: 500;
+            color: $van-cleef-950;
+            margin-top: 30px;
+
+            @media (max-width: 767px) {
+              // display: none;
+              margin-top: 0px;
             }
           }
         }
 
-        .profile-nav-wrapper {
-          ul {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-
-            li {
-              width: 40px;
-              height: 40px;
-              border-radius: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              background-color: $van-cleef-100;
-              transition: 0.3s;
-
-              &:hover {
-                background-color: $van-cleef-500;
-              }
-
-              img {
-                width: 20px;
-                height: 20px;
-              }
-            }
-          }
+        .content {
+          font-size: 14px;
+          line-height: 16px;
+          font-weight: 500;
+          color: $van-cleef-950;
+          text-align: center;
         }
       }
     }
+  }
+}
 
-    &:hover {
-      border: 1px solid $van-cleef-400;
-      cursor: pointer;
+.section-top-bar {
+  z-index: 1;
+  background-color: #f6f7fa;
+  padding: 8px 0px;
+  border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+  width: 100%;
+
+  .section-title {
+    font-size: 18px;
+    line-height: 20px;
+    color: $van-cleef-950;
+    font-weight: 700;
+    position: relative;
+    padding-left: 2px;
+    &::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      display: inline-block;
+      background: $van-cleef-600;
+      margin: 4px 5px 4px;
     }
   }
+}
+
+.section-top-tab-bar {
+  z-index: 1;
+  background-color: #f6f7fa;
+  width: 100%;
+
+  .tab-wrapper {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 5px;
+
+    &::-webkit-scrollbar {
+      width: 1px;
+      border-radius: 1px;
+      height: 1px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #e8e8e8;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $van-cleef-600;
+      border-radius: 1px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: $van-cleef-600;
+    }
+
+    .tab-nav {
+      background-color: transparent;
+      color: $van-cleef-600;
+      text-transform: capitalize;
+      cursor: pointer;
+      border-radius: 30px;
+      padding: 4px 20px;
+      text-decoration: none;
+      font-family: $Lato;
+      font-weight: 500;
+      font-size: 12px;
+      transition: 0.3s;
+      text-transform: capitalize;
+      border: 1px solid $van-cleef-600;
+
+      &:hover,
+      &:focus {
+        background-color: $van-cleef-600;
+        color: $white-color;
+      }
+      &.active {
+        background-color: $van-cleef-600;
+        color: $white-color;
+      }
+    }
+  }
+}
+
+.recent-view-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .recent-view-page-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+    grid-auto-rows: minmax(60px, auto);
+
+    @media (max-width: 1199px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 575px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .similar-profiles-section {
+      cursor: pointer;
+      text-decoration: none;
+      padding: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      border-radius: 5px;
+
+      .similar-profile-section {
+        box-shadow: $box-shadow;
+        width: 80px;
+        height: 80px;
+        border-radius: 5px;
+        overflow: hidden;
+        .similar-profile-img {
+          width: auto;
+          height: 80px;
+        }
+      }
+      .similar-profile-text {
+        font-size: 14px;
+        line-height: 16px;
+        // color: $van-cleef-950;
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        span.profile-name {
+          color: $van-cleef-600;
+          font-weight: 500;
+          display: block;
+          white-space: normal;
+          font-size: 16px;
+          line-height: 18px;
+          -webkit-line-clamp: 1;
+          min-height: 18px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow-y: hidden;
+        }
+        span.profile-age {
+          font-size: 14px;
+          line-height: 16px;
+          color: $van-cleef-950;
+          font-weight: 400;
+          display: block;
+        }
+        span.profile-location {
+          font-size: 12px;
+          line-height: 14px;
+          color: $van-cleef-950;
+          font-weight: 300;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.update-view-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .update-view-page-section-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+    grid-auto-rows: minmax(60px, auto);
+
+    @media (max-width: 1199px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 575px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .update-section {
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+    background-color: $van-cleef-50;
+    .update-section-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      background-color: $van-cleef-600;
+      .update-img {
+        width: auto;
+        height: 30px;
+      }
+    }
+    .update-content {
+      font-size: 14px;
+      line-height: 16px;
+      color: $van-cleef-950;
+      font-weight: 400;
+      gap: 4px;
+    }
+  }
+}
+
+.page-title {
+  color: $van-cleef-950;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
 }
 
 @media (max-width: 991px) {
@@ -1141,4 +1640,11 @@ button {
       }
     }
   }
+}
+
+.container {
+  max-width: 70%;
+  // @media (max-width: 1399px) {
+  //   max-width: 100%;
+  // }
 }

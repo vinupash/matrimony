@@ -21,7 +21,7 @@ const Navbar = (props) => {
       <div className="container">
         <div className="navbar-wrapper">
           <div className="logo-section">
-            <CustomLink>
+            <CustomLink to={"/"}>
               <div className="logo"></div>
             </CustomLink>
           </div>
@@ -37,7 +37,7 @@ const Navbar = (props) => {
                 <div className="menu-icon">
                   <img src={assets.UsersIcon} alt="Users Icon" />
                 </div>
-                <CustomLink to={"/"}>Matches</CustomLink>
+                <CustomLink to={"/matches"}>Matches</CustomLink>
               </li>
               <li className="list-wrapper dropdown-notification">
                 <div className="menu-icon">
@@ -129,7 +129,7 @@ const Navbar = (props) => {
                       <div className="menu-icon">
                         <img src={assets.BellBlackIcon} alt="Bell Icon" />
                       </div>
-                      <CustomLink to={"/"}>Notification</CustomLink>
+                      <CustomLink to={"/notification"}>Notification</CustomLink>
                       <div className="notification-count">20</div>
                     </li>
                   </ul>

@@ -1,12 +1,23 @@
 import { useContext } from "react";
-import { CustomLink, CustomLottie, Navbar, Sidemenu } from "../components";
+import {
+  CustomLottie,
+  MatchingLimit,
+  Navbar,
+  ProfileListingItem,
+  QuickMatchPopup,
+  Sidemenu,
+} from "../components";
 import { assets } from "../constant";
-import { useGreeting } from "../hooks";
+import { useQuickMatchPopup } from "../hooks";
 import NavigationContext from "../context/Navigation";
+// import QuickMatchPopup from "../components/QuickMatchPopup";
 
-const HomePage = () => {
+const HomePage = (props) => {
+  // console.log(props);
+
   const { isProfileUploaded } = useContext(NavigationContext);
-  const greeting = useGreeting();
+  const { activeProfile, showProfile, closeProfile } = useQuickMatchPopup();
+
   const userProfile = {
     id: 1,
     name: "Rahul Koarde",
@@ -14,7 +25,8 @@ const HomePage = () => {
     age: 28,
     education: "B.Sc New",
     place: "New",
-    profileImg: assets.Profile,
+    profileImg: assets.ProfileThree,
+    paid: false,
   };
 
   const profileListData = [
@@ -22,176 +34,185 @@ const HomePage = () => {
       id: 1,
       name: "John Doe",
       details: "Software Engineer",
-      img: assets.Profile,
+      img: null,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
     },
     {
       id: 2,
       name: "Jane Smith",
       details: "Product Manager",
-      img: assets.ProfileTwo,
+      img: assets.Profile,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
     },
-    { id: 3, name: "Alex Brown", details: "Designer", img: assets.ProfileTwo },
-    { id: 4, name: "Alex Brown", details: "Designer", img: assets.Profile },
+    {
+      id: 3,
+      name: "Alex Brown",
+      details: "Designer",
+      img: assets.ProfileThree,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
+    },
+    {
+      id: 4,
+      name: "Alex Brown",
+      details: "Designer",
+      img: assets.Profile,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
+    },
     {
       id: 5,
       name: "John Doe",
       details: "Software Engineer",
-      img: assets.ProfileTwo,
+      img: assets.ProfileThree,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
     },
     {
       id: 6,
       name: "Jane Smith",
       details: "Product Manager",
       img: assets.Profile,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
     },
-    { id: 7, name: "Alex Brown", details: "Designer", img: assets.Profile },
-    { id: 8, name: "Alex Brown", details: "Designer", img: assets.ProfileTwo },
+    {
+      id: 7,
+      name: "Alex Brown",
+      details: "Designer",
+      img: assets.Profile,
+      gender: 0,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
+    },
+    {
+      id: 8,
+      name: "Alex Brown",
+      details: "Designer",
+      img: assets.ProfileTwo,
+      gender: 1,
+      profile_img_show: true,
+      profile_img_show_only_paid: false,
+    },
   ];
+
+  const maskedProfiles = profileListData.map((profile) => {
+    const [firstName, lastName] = profile.name.split(" ");
+    return {
+      ...profile,
+
+      name: `${firstName} ${
+        lastName
+          ? userProfile.paid
+            ? lastName
+            : "#".repeat(lastName.length)
+          : ""
+      }`,
+    };
+  });
+
+  const maskLastName = (profile) => {
+    const [firstName, lastName] = profile.name.split(" ");
+    return `${firstName} ${
+      lastName
+        ? userProfile.paid
+          ? lastName
+          : "#".repeat(lastName.length)
+        : ""
+    }`;
+  };
+
   return (
     <>
-      <Navbar userProfile={userProfile} />
-      <div className="container main-wrapper">
-        <div className="menu-section">
-          <Sidemenu userProfile={userProfile} greeting={greeting} />
-        </div>
-        <div className="main-section">
-          {isProfileUploaded ? (
-            <div className="profile-listing-container">
-              <div className={`profile-list-container`}>
-                {profileListData.map((data) => {
-                  return (
-                    <div className="profile-list-item" key={data.id}>
-                      <div className="profile-image-wrapper">
-                        <CustomLink to={"/about"}>
-                          <img
-                            src={data.img}
-                            alt=""
-                            className="profile-image"
+      <Navbar userProfile={props.data} />
+      <div className="main-wrapper">
+        <div className="container">
+          <div className="position-relative content-wrapper">
+            <div className="left-section">
+              <Sidemenu userProfile={props.data} greeting={props.greeting} />
+            </div>
+            <div className="main-section">
+              {isProfileUploaded ? (
+                <>
+                  <div className="position-sticky top-0 start-0 section-top-bar">
+                    <div className="section-title">Daily Recommendations</div>
+                  </div>
+                  <div className="profile-listing-container">
+                    <div className={`profile-list-container`}>
+                      {maskedProfiles.map((data) => {
+                        return (
+                          <ProfileListingItem
+                            key={data.id}
+                            id={data.id}
+                            img={
+                              data.img &&
+                              (userProfile.paid || data.profile_img_show)
+                                ? data.img
+                                : data.gender === 0
+                                ? assets.BlankManIcon
+                                : assets.BlankWomanIcon
+                            }
+                            name={data.name}
+                            openPopup={() => showProfile(data.id)}
                           />
-                        </CustomLink>
-                      </div>
-                      <div className="profile-details">
-                        <div className="profile-details-wrapper">
-                          <CustomLink
-                            to={"/about"}
-                            className={"profile-details-link"}
-                          >
-                            <div className="profile-personal-details">
-                              <div className="profile-dob">21 Dec 2024</div>
-                              <div className="profile-name">
-                                Vinayak Abhang, 34Yr
-                              </div>
-                              <ul className="profile-search-card">
-                                <li>5 ft 6 in</li>
-                                <li>Ahmednagar</li>
-                                <li>Sutar</li>
-                              </ul>
-                              <div className="profile-occupation-wrapper">
-                                <div className="d-flex align-items-center gap-1">
-                                  <div className="flex-shrink-0 icon-box">
-                                    <img src={assets.BagIcon} alt="icon" />
-                                  </div>
-                                  <div className="flex-grow-1 occupation">
-                                    Govt. - Non - IT Engineer
-                                  </div>
-                                </div>
-                                <div className="d-flex align-items-center gap-1">
-                                  <div className="flex-shrink-0 icon-box">
-                                    <img src={assets.SalaryIcon} alt="icon" />
-                                  </div>
-                                  <div className="flex-grow-1 income">
-                                    Rs. 3 - 4 Lakh p.a
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="profile-occupation-wrapper">
-                                <div className="d-flex align-items-center gap-1">
-                                  <div className="flex-shrink-0 icon-box">
-                                    <img
-                                      src={assets.EducationIcon}
-                                      alt="icon"
-                                    />
-                                  </div>
-                                  <div className="flex-grow-1 education-degree">
-                                    M.Sc, B.Sc
-                                  </div>
-                                </div>
-                                <div className="d-flex align-items-center gap-1">
-                                  <div className="flex-shrink-0 icon-box">
-                                    <img src={assets.WeddingIcon} alt="icon" />
-                                  </div>
-                                  <div className="flex-grow-1 marital-status">
-                                    Never Married
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </CustomLink>
-                          <div className="profile-nav-wrapper">
-                            <ul>
-                              <li>
-                                <img src={assets.MatchingIcon} alt="icon" />
-                              </li>
-                              <li>
-                                <img src={assets.StarIcon} alt="icon" />
-                              </li>
-                              <li
-                                ddata-bs-toggle="tooltip"
-                                data-bs-title="Some tooltip text!"
-                              >
-                                <img src={assets.ViewProfileIcon} alt="icon" />
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </div>
-              <div className="daily-limit-alert text-center">
-                <div className="user-name">Hi Rahul Koarde,</div>
-                <div className="title">
-                  You’ve reached your daily limit to view matches
-                </div>
-                <CustomLottie
-                  lottieFile={assets.Nomore}
-                  loop={true}
-                  className="daily-limit-alert-img"
-                />
-                <div className="subtitle">
-                  Come back tomorrow for more or upgrade to a paid membership to
-                  continue viewing
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-custom"
-                  // onClick={handleLogin}
-                >
-                  upgrade
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="h-100 w-100 d-flex justify-content-center align-items-center flex-column gap-3 update-profile-wrapper">
-              <div className="title">Find Your Perfect Match!</div>
-              <CustomLottie
-                lottieFile={assets.UploadProfile}
-                loop={true}
-                className="upload-profile-img"
-              />
-              <div className="subtitle">
-                Upload your profile to discover suitable matches tailored just
-                for you.
-              </div>
+                  </div>
+                </>
+              ) : (
+                <div className="h-100 w-100 d-flex justify-content-center align-items-center flex-column gap-3 update-profile-wrapper">
+                  <div className="title">Find Your Perfect Match!</div>
+                  <CustomLottie
+                    lottieFile={assets.UploadProfile}
+                    loop={true}
+                    className="upload-profile-img"
+                  />
+                  <div className="subtitle">
+                    Upload your profile to discover suitable matches tailored
+                    just for you.
+                  </div>
 
-              <button type="submit" className="btn btn-custom">
-                Upload your profile
-              </button>
+                  <button type="submit" className="btn btn-custom">
+                    Upload your profile
+                  </button>
+                </div>
+              )}
+              {/* <MatchingLimit /> */}
             </div>
-          )}
+          </div>
         </div>
       </div>
+      {profileListData.map((listProfile) => {
+        return (
+          <QuickMatchPopup
+            key={listProfile.id}
+            activeProfile={activeProfile === listProfile.id}
+            userProfileName={userProfile.name}
+            userProfileImg={userProfile.profileImg}
+            //
+            listProfileName={maskLastName(listProfile)}
+            listProfileImg={
+              listProfile.img &&
+              (userProfile.paid || listProfile.profile_img_show)
+                ? listProfile.img
+                : listProfile.gender === 0
+                ? assets.BlankManIcon
+                : assets.BlankWomanIcon
+            }
+            onClick={closeProfile}
+            onHide={closeProfile}
+          />
+        );
+      })}
     </>
   );
 };

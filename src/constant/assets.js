@@ -11,6 +11,7 @@ import BellIcon from "../assets/bell.svg";
 import BellBlackIcon from "../assets/bell-black.svg";
 import Profile from "../assets/profile.jpg";
 import ProfileTwo from "../assets/profile-4.jpg";
+import ProfileThree from "../assets/profile-5.jpg";
 import Bookmark from "../assets/bookmark.svg";
 import Connect from "../assets/connect.svg";
 import ConnectBlack from "../assets/connect-black.svg";
@@ -31,6 +32,9 @@ import WeddingIcon from "../assets/wedding-rings.svg";
 import ViewProfileIcon from "../assets/view-profile.svg";
 import StarIcon from "../assets/star.svg";
 import MatchIcon from "../assets/match.svg";
+import DeleteIcon from "../assets/delete.svg";
+import BlankWomanIcon from "../assets/blank-img-woman.svg";
+import BlankManIcon from "../assets/blank-img-man.svg";
 
 const assets = {
   EyeClosedIcon,
@@ -66,5 +70,9 @@ const assets = {
   StarIcon,
   MatchIcon,
   Nomore,
+  DeleteIcon,
+  ProfileThree,
+  BlankWomanIcon,
+  BlankManIcon,
 };
 export default assets;
