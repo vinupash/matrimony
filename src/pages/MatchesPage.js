@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import {
   CustomLottie,
-  MatchingLimit,
+  // MatchingLimit,
   Navbar,
   ProfileListingItem,
   QuickMatchPopup,
@@ -10,7 +10,7 @@ import {
 import { assets } from "../constant";
 import { useQuickMatchPopup } from "../hooks";
 import NavigationContext from "../context/Navigation";
-import { Nav, Tab } from "react-bootstrap";
+// import { Nav, Tab } from "react-bootstrap";
 // import QuickMatchPopup from "../components/QuickMatchPopup";
 
 const MatchesPage = (props) => {
@@ -54,7 +54,7 @@ const MatchesPage = (props) => {
       id: 3,
       name: "Alex Brown",
       details: "Designer",
-      img: assets.ProfileThree,
+      img: assets.ProfileFour,
       gender: 0,
       profile_img_show: true,
       profile_img_show_only_paid: false,
@@ -135,11 +135,13 @@ const MatchesPage = (props) => {
   return (
     <>
       <Navbar userProfile={props.data} />
-      <div className="main-wrapper">
+      <div className="main-wrapper right-panel">
         <div className="container">
           <div className="position-relative content-wrapper">
             <div className="left-section">
-              <Sidemenu userProfile={props.data} greeting={props.greeting} />
+              <div className="sidemenu-content-wrapper">
+                <Sidemenu userProfile={props.data} greeting={props.greeting} />
+              </div>
             </div>
             <div className="main-section">
               {isProfileUploaded ? (
@@ -253,6 +255,26 @@ const MatchesPage = (props) => {
                   </div>
                 </>
               )}
+            </div>
+            <div className="right-section">
+              <div className="right-filter-wrapper">
+                <div className="filter-section">
+                  <div className="right-section-content-title">
+                    Filter Profiles
+                  </div>
+                  <div className="filter-section-wrapper">
+                    <div>1</div>
+                    <div>1</div>
+                    <div>1</div>
+                    <div>1</div>
+                  </div>
+                  <div className="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-custom">
+                      upgrade
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

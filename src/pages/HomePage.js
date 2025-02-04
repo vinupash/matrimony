@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import {
   CustomLottie,
-  MatchingLimit,
+  // MatchingLimit,
   Navbar,
   ProfileListingItem,
   QuickMatchPopup,
@@ -26,7 +26,7 @@ const HomePage = (props) => {
     education: "B.Sc New",
     place: "New",
     profileImg: assets.ProfileThree,
-    paid: false,
+    paid: true,
   };
 
   const profileListData = [
@@ -137,7 +137,9 @@ const HomePage = (props) => {
         <div className="container">
           <div className="position-relative content-wrapper">
             <div className="left-section">
-              <Sidemenu userProfile={props.data} greeting={props.greeting} />
+              <div className="sidemenu-content-wrapper">
+                <Sidemenu userProfile={props.data} greeting={props.greeting} />
+              </div>
             </div>
             <div className="main-section">
               {isProfileUploaded ? (

@@ -17,7 +17,7 @@ const App = () => {
     age: 28,
     education: "B.Sc New",
     place: "New",
-    profileImg: assets.ProfileThree,
+    profileImg: assets.ProfileFour,
     paid: false,
   };
 

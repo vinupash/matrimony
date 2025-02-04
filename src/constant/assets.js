@@ -12,6 +12,7 @@ import BellBlackIcon from "../assets/bell-black.svg";
 import Profile from "../assets/profile.jpg";
 import ProfileTwo from "../assets/profile-4.jpg";
 import ProfileThree from "../assets/profile-5.jpg";
+import ProfileFour from "../assets/profile-6.jpg";
 import Bookmark from "../assets/bookmark.svg";
 import Connect from "../assets/connect.svg";
 import ConnectBlack from "../assets/connect-black.svg";
@@ -74,5 +75,6 @@ const assets = {
   ProfileThree,
   BlankWomanIcon,
   BlankManIcon,
+  ProfileFour,
 };
 export default assets;

@@ -503,11 +503,35 @@ button {
   }
 }
 
+.sidemenu-content-wrapper {
+  overflow-y: auto;
+  height: 100%;
+  padding: 1px;
+  &::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 2px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #e8e8e8;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $van-cleef-600;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $van-cleef-600;
+  }
+}
+
 .sidemenu-content {
+  padding: 20px;
   background-color: #fafafa;
-  // box-shadow: 0 0 6px #00000029;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  padding: 10px;
+
   border-radius: 10px;
 }
 
@@ -764,7 +788,7 @@ button {
   }
   &.right-panel {
     .main-section {
-      margin: 0px 250px;
+      margin: 0px 280px;
       overflow-y: auto;
       height: calc(100vh - 80px);
       box-sizing: border-box;
@@ -773,7 +797,7 @@ button {
       padding-right: 20px;
 
       @media (max-width: 1023px) {
-        margin: 0px 0px 0px 250px;
+        margin: 0px 0px 0px 280px;
         padding-right: 1px;
       }
 
@@ -781,40 +805,61 @@ button {
         margin: 0px 0px;
         padding: 0px 1px 0px;
       }
+      .profile-listing-container {
+        .profile-list-container {
+          .profile-list-item {
+            .profile-image-wrapper {
+              width: 180px;
+            }
+          }
+        }
+      }
     }
     .right-section {
       position: absolute;
       top: 0;
       right: 0;
-      width: 250px;
-      overflow-y: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      height: calc(100vh - 70px);
+      width: 280px;
+      height: calc(100vh - 90px);
       padding: 10px 1px 0px;
 
       @media (max-width: 1023px) {
         display: none;
       }
 
-      .right-section-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+      .right-section-content {
+        padding: 1px 1px 1px;
+        overflow-y: auto;
+        height: 100%;
 
-        .right-section-content {
-          background-color: #fafafa;
-          // box-shadow: 0 0 6px #00000029;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-            0 1px 2px rgba(0, 0, 0, 0.24);
-          padding: 10px;
-          border-radius: 10px;
-          overflow-y: auto;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+        &::-webkit-scrollbar {
+          width: 2px;
+          border-radius: 2px;
+          height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #e8e8e8;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: $van-cleef-600;
+          border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: $van-cleef-600;
+        }
+
+        .right-content-wrapper {
           display: flex;
           flex-direction: column;
           gap: 15px;
+          background-color: #fafafa;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          padding: 20px;
+          border-radius: 10px;
 
           .right-section-content-title {
             font-size: 14px;
@@ -822,8 +867,9 @@ button {
             color: $van-cleef-950;
             font-weight: 500;
             position: relative;
-            padding-bottom: 5px;
+            padding: 6px 2px 6px;
             border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+            background-color: #fafafa;
 
             &::after {
               content: "";
@@ -834,10 +880,17 @@ button {
               margin: 4px 5px 4px;
             }
           }
-
           .similar-profiles-section {
             cursor: pointer;
             text-decoration: none;
+            padding: 0px 2px 0;
+            &:hover {
+              .similar-profile-text {
+                span.profile-name {
+                  color: $van-cleef-600;
+                }
+              }
+            }
             .similar-profile-section {
               box-shadow: $box-shadow;
               width: 60px;
@@ -862,6 +915,7 @@ button {
                 color: $van-cleef-950;
                 font-weight: 500;
                 display: block;
+                transition: 0.3s;
               }
               span.profile-age {
                 font-size: 14px;
@@ -881,6 +935,95 @@ button {
           }
         }
       }
+
+      .right-filter-wrapper {
+        // overflow-y: auto;
+        height: 100%;
+        .filter-section {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 15px;
+          height: 100%;
+          background-color: #fafafa;
+          // box-shadow: 0 0 6px #00000029;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+          padding: 20px;
+          border-radius: 10px;
+
+          .right-section-content-title {
+            font-size: 14px;
+            line-height: 16px;
+            color: $van-cleef-950;
+            font-weight: 500;
+            position: relative;
+            padding: 6px 2px 6px;
+            border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+            background-color: #fafafa;
+
+            &::after {
+              content: "";
+              width: 40px;
+              height: 1px;
+              display: inline-block;
+              background: $van-cleef-600;
+              margin: 4px 5px 4px;
+            }
+          }
+
+          .btn-custom {
+            padding: 6px 18px;
+            font-size: 14px;
+          }
+
+          .filter-section-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            height: calc(100vh - 40px);
+
+            &::-webkit-scrollbar {
+              width: 2px;
+              border-radius: 2px;
+              height: 10px;
+            }
+
+            &::-webkit-scrollbar-track {
+              background: #e8e8e8;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: $van-cleef-600;
+              border-radius: 2px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+              background: $van-cleef-600;
+            }
+          }
+        }
+
+        // &::-webkit-scrollbar {
+        //   width: 2px;
+        //   border-radius: 2px;
+        //   height: 10px;
+        // }
+
+        // &::-webkit-scrollbar-track {
+        //   background: #e8e8e8;
+        // }
+
+        // &::-webkit-scrollbar-thumb {
+        //   background: $van-cleef-600;
+        //   border-radius: 2px;
+        // }
+
+        // &::-webkit-scrollbar-thumb:hover {
+        //   background: $van-cleef-600;
+        // }
+      }
     }
   }
 
@@ -888,11 +1031,11 @@ button {
     position: absolute;
     top: 0;
     left: 0;
-    width: 250px;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    height: calc(100vh - 70px);
+    width: 280px;
+    // overflow-y: auto;
+    // -ms-overflow-style: none;
+    // scrollbar-width: none;
+    height: calc(100vh - 90px);
     padding: 10px 1px 0px;
 
     @media (max-width: 767px) {
@@ -901,7 +1044,7 @@ button {
   }
 
   .main-section {
-    margin-left: 250px;
+    margin-left: 280px;
     overflow-y: auto;
     height: calc(100vh - 80px);
     box-sizing: border-box;
@@ -913,7 +1056,7 @@ button {
     gap: 20px;
 
     @media (max-width: 1023px) {
-      margin: 0px 0px 0px 250px;
+      margin: 0px 0px 0px 280px;
     }
 
     @media (max-width: 767px) {
@@ -1020,9 +1163,9 @@ button {
       .profile-image-wrapper {
         aspect-ratio: 3/4;
         // background-color: $van-cleef-50;
-        // width: 15.5vh;
+        // width: 20vh;
         // width: 140px;
-        width: 160px;
+        width: 180px;
         overflow: hidden;
         flex-shrink: 0;
         position: relative;
@@ -1102,6 +1245,7 @@ button {
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 overflow-y: hidden;
+                transition: 0.3s;
 
                 @media (max-width: 767px) {
                   font-size: 22px;
@@ -1154,9 +1298,9 @@ button {
 
               .profile-occupation-wrapper {
                 display: flex;
-                align-items: center;
+                align-items: start;
                 gap: 5px;
-                flex-direction: row;
+                flex-direction: column;
                 @media (max-width: 767px) {
                   gap: 15px;
                 }
@@ -1234,6 +1378,20 @@ button {
       &:hover {
         border: 1px solid $van-cleef-400;
         cursor: pointer;
+
+        &.profile-list-item {
+          .profile-details {
+            .profile-details-wrapper {
+              .profile-details-link {
+                .profile-personal-details {
+                  .profile-name {
+                    color: $van-cleef-600;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -1643,8 +1801,8 @@ button {
 }
 
 .container {
-  max-width: 70%;
-  // @media (max-width: 1399px) {
-  //   max-width: 100%;
-  // }
+  max-width: 92%;
+  @media (max-width: 767px) {
+    max-width: 100%;
+  }
 }

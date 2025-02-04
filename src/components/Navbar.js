@@ -68,7 +68,7 @@ const Navbar = (props) => {
               >
                 <div className="avatar">
                   <UserProfile
-                    profileImage={assets.Profile}
+                    profileImage={props.userProfile.profileImg}
                     className="user-profile-img"
                   />
                 </div>

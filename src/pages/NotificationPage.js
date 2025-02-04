@@ -52,7 +52,9 @@ const NotificationPage = (props) => {
         <div className="container">
           <div className="position-relative content-wrapper">
             <div className="left-section">
-              <Sidemenu userProfile={props.data} greeting={props.greeting} />
+              <div className="sidemenu-content-wrapper">
+                <Sidemenu userProfile={props.data} greeting={props.greeting} />
+              </div>
             </div>
             <div className="main-section">
               <div className="position-sticky top-0 start-0 section-top-bar">
@@ -133,6 +135,30 @@ const NotificationPage = (props) => {
             </div>
             <div className="right-section">
               <div className="right-section-wrapper">
+                <div className="right-section">
+                  <div className="right-section-content">
+                    <div className="right-content-wrapper">
+                      <div className="right-section-content-title">
+                        Similar Profiles
+                      </div>
+                      {SimilarProfiles.map((data) => {
+                        return (
+                          <SimilarProfile
+                            key={data.id}
+                            to={`/about${data.id}`}
+                            name={data.name}
+                            profile={data.profileImg}
+                            age={data.age}
+                            height={data.height}
+                            location={data.location}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="right-section-wrapper">
                 <div className="right-section-content">
                   <div className="right-section-content-title">
                     Similar Profiles
@@ -151,7 +177,7 @@ const NotificationPage = (props) => {
                     );
                   })}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
