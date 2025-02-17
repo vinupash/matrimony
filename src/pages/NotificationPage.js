@@ -68,7 +68,7 @@ const NotificationPage = (props) => {
                     return (
                       <SimilarProfile
                         key={data.id}
-                        to={`/about${data.id}`}
+                        to={`/profile-view/${data.id}`}
                         name={data.name}
                         profile={data.profileImg}
                         age={data.age}
@@ -145,7 +145,7 @@ const NotificationPage = (props) => {
                         return (
                           <SimilarProfile
                             key={data.id}
-                            to={`/about${data.id}`}
+                            to={`/profile-view/${data.id}`}
                             name={data.name}
                             profile={data.profileImg}
                             age={data.age}

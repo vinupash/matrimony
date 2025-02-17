@@ -13,21 +13,23 @@ import NavigationContext from "../context/Navigation";
 // import QuickMatchPopup from "../components/QuickMatchPopup";
 
 const HomePage = (props) => {
-  // console.log(props);
+  console.log("heca", props.dataUser);
+
+  // const profileListData =  props.data;
 
   const { isProfileUploaded } = useContext(NavigationContext);
   const { activeProfile, showProfile, closeProfile } = useQuickMatchPopup();
 
-  const userProfile = {
-    id: 1,
-    name: "Rahul Koarde",
-    dob: "28 Dec 2024",
-    age: 28,
-    education: "B.Sc New",
-    place: "New",
-    profileImg: assets.ProfileThree,
-    paid: true,
-  };
+  // const userProfile = {
+  //   id: 1,
+  //   name: "Rahul Koarde",
+  //   dob: "28 Dec 2024",
+  //   age: 28,
+  //   education: "B.Sc New",
+  //   place: "New",
+  //   profileImg: assets.ProfileFour,
+  //   paid: false,
+  // };
 
   const profileListData = [
     {
@@ -104,14 +106,14 @@ const HomePage = (props) => {
     },
   ];
 
-  const maskedProfiles = profileListData.map((profile) => {
+  const maskedProfiles = props.data.map((profile) => {
     const [firstName, lastName] = profile.name.split(" ");
     return {
       ...profile,
 
       name: `${firstName} ${
         lastName
-          ? userProfile.paid
+          ? props.dataUser.paid
             ? lastName
             : "#".repeat(lastName.length)
           : ""
@@ -123,7 +125,7 @@ const HomePage = (props) => {
     const [firstName, lastName] = profile.name.split(" ");
     return `${firstName} ${
       lastName
-        ? userProfile.paid
+        ? props.dataUser.paid
           ? lastName
           : "#".repeat(lastName.length)
         : ""
@@ -132,13 +134,16 @@ const HomePage = (props) => {
 
   return (
     <>
-      <Navbar userProfile={props.data} />
-      <div className="main-wrapper">
+      <Navbar userProfile={props.dataUser} />
+      <div className="main-wrapper right-panel">
         <div className="container">
           <div className="position-relative content-wrapper">
             <div className="left-section">
               <div className="sidemenu-content-wrapper">
-                <Sidemenu userProfile={props.data} greeting={props.greeting} />
+                <Sidemenu
+                  userProfile={props.dataUser}
+                  greeting={props.greeting}
+                />
               </div>
             </div>
             <div className="main-section">
@@ -156,13 +161,14 @@ const HomePage = (props) => {
                             id={data.id}
                             img={
                               data.img &&
-                              (userProfile.paid || data.profile_img_show)
+                              (props.dataUser.paid || data.profile_img_show)
                                 ? data.img
                                 : data.gender === 0
                                 ? assets.BlankManIcon
                                 : assets.BlankWomanIcon
                             }
                             name={data.name}
+                            details={data.details}
                             openPopup={() => showProfile(data.id)}
                           />
                         );
@@ -190,26 +196,42 @@ const HomePage = (props) => {
               )}
               {/* <MatchingLimit /> */}
             </div>
+            <div className="right-section">
+              <div className="right-section-wrapper">
+                <div className="right-section">
+                  <div className="right-section-content">
+                    <div className="right-content-wrapper">
+                      <div className="right-section-content-title">
+                        Similar Profiles
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       {profileListData.map((listProfile) => {
+        console.log("listProfile", listProfile);
+
         return (
           <QuickMatchPopup
             key={listProfile.id}
             activeProfile={activeProfile === listProfile.id}
-            userProfileName={userProfile.name}
-            userProfileImg={userProfile.profileImg}
+            userProfileName={props.dataUser.name}
+            userProfileImg={props.dataUser.profileImg}
             //
             listProfileName={maskLastName(listProfile)}
             listProfileImg={
               listProfile.img &&
-              (userProfile.paid || listProfile.profile_img_show)
+              (props.dataUser.paid || listProfile.profile_img_show)
                 ? listProfile.img
                 : listProfile.gender === 0
                 ? assets.BlankManIcon
                 : assets.BlankWomanIcon
             }
+            listProfileId={listProfile.id}
             onClick={closeProfile}
             onHide={closeProfile}
           />

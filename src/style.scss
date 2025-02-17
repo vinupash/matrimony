@@ -117,10 +117,13 @@ button {
     padding: 8px;
     text-align: center;
     border-radius: 30px;
+    border: 1px solid $van-cleef-600;
+    color: $van-cleef-600;
     &:hover {
       color: $white-color;
       // border-radius: 30px;
       background-color: $van-cleef-600;
+      border: 1px solid $van-cleef-600;
     }
   }
 
@@ -130,6 +133,41 @@ button {
     align-items: center;
     gap: 5px;
     padding: 12px 14px;
+  }
+}
+
+.custom-filter-select {
+  background-color: $van-cleef-50;
+  border-radius: 26px;
+  padding: 12px 18px;
+  font-family: $Lato;
+  font-weight: 400;
+  font-size: 14px;
+  // color: rgba($color: $van-cleef-600, $alpha: 0.55);
+  color: $van-cleef-950;
+  cursor: pointer;
+
+  &.custom-filter-select-wrapper {
+    height: 160px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 2px;
+      border-radius: 2px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #e8e8e8;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $van-cleef-600;
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $van-cleef-600;
+    }
   }
 }
 
@@ -528,10 +566,9 @@ button {
 }
 
 .sidemenu-content {
-  padding: 20px;
+  padding: 15px;
   background-color: #fafafa;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-
   border-radius: 10px;
 }
 
@@ -858,12 +895,12 @@ button {
           background-color: #fafafa;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
             0 1px 2px rgba(0, 0, 0, 0.24);
-          padding: 20px;
+          padding: 15px;
           border-radius: 10px;
 
           .right-section-content-title {
-            font-size: 14px;
-            line-height: 16px;
+            font-size: 16px;
+            line-height: 18px;
             color: $van-cleef-950;
             font-weight: 500;
             position: relative;
@@ -949,12 +986,12 @@ button {
           // box-shadow: 0 0 6px #00000029;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
             0 1px 2px rgba(0, 0, 0, 0.24);
-          padding: 20px;
+          padding: 15px;
           border-radius: 10px;
 
           .right-section-content-title {
-            font-size: 14px;
-            line-height: 16px;
+            font-size: 16px;
+            line-height: 18px;
             color: $van-cleef-950;
             font-weight: 500;
             position: relative;
@@ -1001,6 +1038,67 @@ button {
 
             &::-webkit-scrollbar-thumb:hover {
               background: $van-cleef-600;
+            }
+          }
+
+          .filter-details-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .title {
+              font-size: 14px;
+              line-height: 16px;
+              color: $van-cleef-950;
+              font-weight: 500;
+              // position: relative;
+
+              // &::after {
+              //   content: "";
+              //   width: 40px;
+              //   height: 1px;
+              //   display: inline-block;
+              //   background: $van-cleef-600;
+              //   margin: 4px 5px 4px;
+              // }
+            }
+
+            .filter-wrapper {
+              display: flex;
+              flex-direction: row;
+              gap: 5px;
+              // padding: 5px 0px;
+              padding-bottom: 10px;
+              border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+              > div {
+                flex: 1;
+              }
+              .filter-result,
+              .filter-title {
+                font-size: 14px;
+                line-height: 16px;
+                color: $van-cleef-950;
+                font-weight: 300;
+              }
+
+              .filter-title {
+                color: $van-cleef-600;
+                font-weight: 300;
+              }
+
+              .filter-result {
+                cursor: pointer;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 6px;
+                padding-right: 5px;
+                text-align: right;
+                img {
+                  width: 12px;
+                  height: 12px;
+                }
+              }
             }
           }
         }
@@ -1324,7 +1422,7 @@ button {
                 .income {
                   font-size: 12px;
                   line-height: 14px;
-                  font-weight: 500;
+                  font-weight: 400;
                   color: $van-cleef-950;
                   white-space: normal;
                   -webkit-line-clamp: 1;
@@ -1521,10 +1619,152 @@ button {
   }
 }
 
+.flter-popup {
+  .modal-dialog {
+    // max-width: 650px;
+    // max-height: 300px;
+  }
+  .modal-content {
+    .modal-body {
+      position: relative;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .close-icon {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        background-color: $white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .popup-title {
+        font-size: 16px;
+        line-height: 18px;
+        color: $van-cleef-950;
+        font-weight: 500;
+        position: relative;
+        padding: 6px 2px 6px;
+        border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+
+        &::after {
+          content: "";
+          width: 40px;
+          height: 1px;
+          display: inline-block;
+          background: $van-cleef-600;
+          margin: 4px 5px 4px;
+        }
+      }
+
+      .filter-select-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+
+        .filter-select-block {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    border-top: none;
+    padding: 16px;
+  }
+}
+
+.gallery-popup,
+.alert-gallery-popup {
+  .modal-dialog {
+    // max-width: 650px;
+    // max-height: 300px;
+  }
+  .modal-content {
+    .modal-body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .close-icon {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        background-color: $white-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .popup-title {
+        font-size: 16px;
+        line-height: 18px;
+        color: $van-cleef-950;
+        font-weight: 500;
+        position: relative;
+        padding: 6px 2px 6px;
+        border-bottom: 1px solid rgba(152, 152, 152, 0.2);
+
+        &::after {
+          content: "";
+          width: 40px;
+          height: 1px;
+          display: inline-block;
+          background: $van-cleef-600;
+          margin: 4px 5px 4px;
+        }
+      }
+
+      .filter-select-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+
+        .filter-select-block {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    border-top: none;
+    padding: 16px;
+  }
+}
+
 .section-top-bar {
   z-index: 1;
   background-color: #f6f7fa;
-  padding: 8px 0px;
+  padding: 8px 0px 10px;
   border-bottom: 1px solid rgba(152, 152, 152, 0.2);
   width: 100%;
 
@@ -1615,10 +1855,14 @@ button {
 
   .recent-view-page-section {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     row-gap: 20px;
     column-gap: 20px;
     grid-auto-rows: minmax(60px, auto);
+
+    @media (max-width: 1599px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     @media (max-width: 1199px) {
       grid-template-columns: repeat(1, 1fr);
@@ -1638,6 +1882,14 @@ button {
       padding: 5px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       border-radius: 5px;
+
+      &:hover {
+        .similar-profile-text {
+          span.profile-name {
+            color: $van-cleef-600;
+          }
+        }
+      }
 
       .similar-profile-section {
         box-shadow: $box-shadow;
@@ -1660,7 +1912,7 @@ button {
         gap: 4px;
 
         span.profile-name {
-          color: $van-cleef-600;
+          color: $van-cleef-950;
           font-weight: 500;
           display: block;
           white-space: normal;
@@ -1671,6 +1923,7 @@ button {
           display: -webkit-box;
           -webkit-box-orient: vertical;
           overflow-y: hidden;
+          transition: 0.3s;
         }
         span.profile-age {
           font-size: 14px;
@@ -1755,6 +2008,96 @@ button {
   line-height: 18px;
 }
 
+.not-found-wrapper {
+  width: 100%;
+  margin-top: 70px;
+  height: calc(100vh - 70px) !important;
+  padding-top: 30px;
+}
+
+.profile-view-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 15px;
+  background-color: #fafafa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  margin-top: 0.5px;
+
+  .profile-gallery-wrapper {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(51, 51, 51, 0.7);
+      z-index: 1;
+    }
+
+    .profile-image {
+      position: relative;
+      z-index: 2;
+      aspect-ratio: 1/1;
+      height: 450px;
+      width: auto;
+      margin: 0 auto;
+    }
+  }
+
+  .profile-data-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    padding: 20px 0px 20px;
+    width: 100%;
+    background-image: linear-gradient(
+      0deg,
+      #000,
+      rgba(0, 0, 0, 0.8) 0,
+      hsla(0, 0%, 40%, 0)
+    );
+
+    .profile-id {
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 400;
+      color: $van-cleef-50;
+    }
+    .profile-dob {
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 400;
+      color: $van-cleef-50;
+    }
+    .profile-name {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 28px;
+      font-family: $Lato;
+      color: $white-color;
+    }
+  }
+}
+
 @media (max-width: 991px) {
   .login-section {
     #bg-video {
@@ -1801,7 +2144,7 @@ button {
 }
 
 .container {
-  max-width: 92%;
+  max-width: 1599px;
   @media (max-width: 767px) {
     max-width: 100%;
   }

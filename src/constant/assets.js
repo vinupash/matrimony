@@ -36,6 +36,8 @@ import MatchIcon from "../assets/match.svg";
 import DeleteIcon from "../assets/delete.svg";
 import BlankWomanIcon from "../assets/blank-img-woman.svg";
 import BlankManIcon from "../assets/blank-img-man.svg";
+import EditIcon from "../assets/edit.svg";
+import PencilIcon from "../assets/pencil.svg";
 
 const assets = {
   EyeClosedIcon,
@@ -76,5 +78,7 @@ const assets = {
   BlankWomanIcon,
   BlankManIcon,
   ProfileFour,
+  EditIcon,
+  PencilIcon,
 };
 export default assets;

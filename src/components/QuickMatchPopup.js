@@ -2,32 +2,13 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { assets } from "../constant";
 import UserProfile from "./UserProfile";
+import CustomLink from "./CustomLink";
 const QuickMatchPopup = (props) => {
-  console.log(props);
+  // console.log("props bx--->", props);
 
   return (
-    // <Modal
-    //   {...props}
-    //   size="lg"
-    //   aria-labelledby="contained-modal-title-vcenter"
-    //   centered
-    //   backdrop="static"
-    //   className="quick-match-popup"
-    //   show={props.activeProfile}
-    // >
-    //   <Modal.Body>
-    //     {/* <div className="close-icon" onClick={props.closeButton}>
-    //       <img src={assets.CloseIcon} alt="Close Icon" />
-    //     </div> */}
-    //     <h4>{props.userProfileName}</h4>
-    //     <h4>{props.listProfileName}</h4>
-    //   </Modal.Body>
-    //   {/* <Modal.Footer>
-    //     <Button onClick={props.onHide}>Close</Button>
-    //   </Modal.Footer> */}
-    // </Modal>
-
     <Modal
+      {...props}
       show={props.activeProfile}
       onHide={props.onClick}
       className="quick-match-popup"
@@ -69,9 +50,13 @@ const QuickMatchPopup = (props) => {
           <div className="content">
             Your profile is not uploaded. Please complete your profile.
           </div>
-          <button type="submit" className="btn btn-custom">
+          <CustomLink
+            type="submit"
+            className="btn btn-custom"
+            to={`/profile-view/${props.listProfileId}`}
+          >
             View {props.listProfileName} Profile
-          </button>
+          </CustomLink>
         </div>
       </Modal.Body>
     </Modal>

@@ -10,13 +10,16 @@ const ProfileListingItem = (props) => {
   return (
     <div className="profile-list-item" key={props.id}>
       <div className="profile-image-wrapper">
-        <CustomLink to={`/about?${props.id}`}>
+        <CustomLink to={`/profile-view/${props.id}`}>
           <img src={props.img} alt="" className="profile-image" />
         </CustomLink>
       </div>
       <div className="profile-details">
         <div className="profile-details-wrapper">
-          <CustomLink to={"/about"} className={"profile-details-link"}>
+          <CustomLink
+            to={`/profile-view/${props.id}`}
+            className={"profile-details-link"}
+          >
             <div className="profile-personal-details">
               <div className="profile-dob">21 Dec 2024</div>
               <div className="profile-name">{props.name}, 34Yr</div>
@@ -30,9 +33,7 @@ const ProfileListingItem = (props) => {
                   <div className="flex-shrink-0 icon-box">
                     <img src={assets.BagIcon} alt="icon" />
                   </div>
-                  <div className="flex-grow-1 occupation">
-                    Govt. - Non - IT Engineer
-                  </div>
+                  <div className="flex-grow-1 occupation">{props.details}</div>
                 </div>
                 <div className="d-flex align-items-center gap-1">
                   <div className="flex-shrink-0 icon-box">
